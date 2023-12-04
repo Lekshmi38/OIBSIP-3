@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDoList</title>
+    <link rel="stylesheet" href="to.css">
+</head>
+<body >
+    <div class="container">
+        <div class="main">
+            <h1>To Do List Site</h1>
+            <form>
+                <input type="text" placeholder="enter list" id="inp">
+                <button onclick="event.preventDefault(); add()">ADD</button>
+            </form>
+        </div>
+        <div id="hai">
+           <div id="here" style="display: none;" >
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let todo = [];
+
+        function add() {
+            let hd = document.querySelector('#inp');
+            let a = hd.value.trim();
+
+            if (a !== "") {
+                todo.push(a);
+                hd.value = "";
+                display();
+            } else {
+                alert("Input value is empty");
+            }
+        }
+
+        function display() {
+            const bd = document.querySelector("#here");
+            bd.innerHTML= " "; 
+
+            for (let i = 0; i < todo.length; i++) {
+    bd.innerHTML +=  `<div id='task-box' ><section class="checked" style="textDecoration:none;">${todo[i]}</section>  <div id="btn-id"><button  onclick='effect_check(${i})'>Done</button><button id='btn' onclick='todo.splice(${i}, 1); display();'>X</button></div><br><div>`;
+}          bd.style.display = "block" ;
+          
+            
+        }
+        function effect_check(index){
+  const taskElement = document.querySelector(`#task-box:nth-child(${index + 1}) .checked `);
+  taskElement.style.textDecoration = "line-through";
+   taskElement.style.color = "black"; 
+        }
+
+        
+
+    </script>
+</body>
+</html>
